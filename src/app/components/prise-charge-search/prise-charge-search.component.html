@@ -1,0 +1,90 @@
+<button mat-button color="primary" (click)="goBack()">
+    <mat-icon>arrow_back</mat-icon> {{ 'button.retour' | translate }}
+</button>
+
+<div class="colis-detail">
+
+    <mat-card class="custom-card" style="text-align: center;">
+
+        <mat-card-header>
+            <mat-card-title>{{'libelle.info.trajet' | translate }}</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+            <div >
+                <mat-form-field appearance="outline" class="full-width">
+                    <input matInput placeholder="{{ 'libelle.id.vol' | translate }}" [(ngModel)]="idVol" >
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field>
+                    <mat-label>{{'libelle.recherche.vol.origine' | translate }}:</mat-label>
+                    <mat-select [(ngModel)]="selectedOriginValue" name="origin">
+                        <mat-option *ngFor="let origin of origins" [value]="origin">
+                            {{origin.aeroNom}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div>
+                <mat-form-field>
+                    <mat-label>{{'libelle.recherche.vol.destination' | translate }}: </mat-label>
+                    <mat-select [(ngModel)]="selectedDestinationValue" name="destination">
+                        <mat-option *ngFor="let destination of destinations" [value]="destination">
+                            {{destination.aeroNom}}
+                        </mat-option>
+                    </mat-select>
+                </mat-form-field>
+            </div>
+            <div>
+                <button mat-raised-button color="primary" (click)="searchScheduledFlight(idVol,selectedOriginValue,selectedDestinationValue); getListColisForJourney(selectedOriginValue,selectedDestinationValue);">
+                    {{'button.recherche.vol' | translate }}
+                </button>
+            </div>
+            <div class="col-md-6">
+                <app-flight-details
+                  [viewMode]="true"
+                  [currentVol]="currentVol"
+                ></app-flight-details>
+              </div>
+            <div>
+              <p *ngIf="errorVol" class="error-message">{{ errorVol }}</p>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+
+    <mat-card class="custom-card" style="text-align: center;" *ngIf="rechercheOk">
+
+        <mat-card-header>
+            <mat-card-title>{{'libelle.liste.colis.trajet' | translate }}</mat-card-title>
+        </mat-card-header>
+
+        <mat-card-content>
+            <div class="custom-colis-list" *ngFor="let colis of lstColis">
+                <mat-card class="example-card" appearance="outlined">
+                  <mat-card-header>
+                    <mat-card-title-group>
+                      <img mat-card-sm-image [src]="colisService.getImage(colis.idColis)">
+                      <mat-card-title>{{ colis.users.idUser }}</mat-card-title>
+                      <mat-card-subtitle>{{ 'libelle.villeDepart' | translate }}: {{ colis.villeDepart }}</mat-card-subtitle>
+                      <mat-card-subtitle>{{ 'libelle.villeArrivee' | translate }}:    {{ colis.villeArrivee }}</mat-card-subtitle>
+                      <mat-card-subtitle>{{ 'libelle.montant' | translate }}:    {{ colis.tarif }}</mat-card-subtitle>
+                    </mat-card-title-group>
+                  </mat-card-header>
+                  <mat-card-content>
+                  Description : {{ colis.description }}
+                  </mat-card-content>
+                  <mat-card-actions>
+                      <button mat-button color="primary" (click)="details(colis.idColis)">{{ 'libelle.details' | translate }}</button>
+                      <button mat-button color="accent" (click)="prendreEnCharge (colis)">{{ 'libelle.prendre.charge' | translate }}</button>
+                    </mat-card-actions>
+                </mat-card>
+              </div>
+            <div>
+              <p *ngIf="errorMessage" class="error-message">{{ errorMessage }}</p>
+            </div>
+            </mat-card-content>
+    </mat-card>
+
+</div>

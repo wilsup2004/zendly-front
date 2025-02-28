@@ -1,0 +1,93 @@
+<div>
+    <div class="submit-form">
+      <div *ngIf="!submitted">
+
+        <div class="form-group">
+          <label for="idUser">pseudo </label>
+          <input
+            type="text"
+            class="form-control"
+            id="idUser"
+            required
+            [(ngModel)]="user.idUser"
+            name="idUser"
+          />
+        </div>
+  
+        <div class="form-group">
+          <label for="nom">Nom </label>
+          <input
+            class="form-control"
+            id="nom"
+            required
+            [(ngModel)]="user.nom"
+            name="nom"
+          />
+        </div>
+
+        <div class="form-group">
+            <label for="prenom">Prenom</label>
+            <input
+              class="form-control"
+              id="prenom"
+              required
+              [(ngModel)]="user.prenom"
+              name="prenom"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="mail">Email</label>
+            <input
+              class="form-control"
+              id="mail"
+              required
+              [(ngModel)]="user.mail"
+              name="mail"
+            />
+          </div>
+
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+              class="form-control"
+              id="password"
+              required
+              [(ngModel)]="user.password"
+              name="password"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="idProfil">ID Profil</label>
+            <input
+              class="form-control"
+              id="idProfil"
+              required
+              [(ngModel)]="profil.idProfil"
+              name="idProfil"
+            />
+          </div>
+  
+          <div class="form-group">
+              <label for="libelProfil">Profil</label>
+              <input
+                class="form-control"
+                id="libelProfil"
+                required
+                [(ngModel)]="profil.libelProfil"
+                name="libelProfil"
+              />
+            </div>
+  
+        <button (click)="saveUser()" class="btn btn-success">Ajouter</button>
+      </div>
+  
+      <div *ngIf="submitted">
+        <h4>Utilisateur ajouté avec succès!</h4>
+        <button class="btn btn-success" (click)="newUser()">Nouveau</button>
+      </div>
+    </div>
+  </div>
+

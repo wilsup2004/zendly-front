@@ -1,0 +1,81 @@
+
+<style>
+    .my-pagination /deep/ .ngx-pagination li {
+      background: white;
+      color: grey;
+    }
+    .my-pagination /deep/ .ngx-pagination .current {
+      background: rgb(97, 97, 143);
+      color: white;
+    }
+  </style>
+
+
+  <div class="list row">
+      <div class="col-md-8">
+        <div class="input-group mb-3">
+          <input
+          
+            type="text"
+            class="form-control"
+            placeholder="Recherche par nom"
+            [(ngModel)]="nom"
+          />
+          <div class="input-group-append">
+            <button
+              class="btn btn-outline-secondary"
+              type="button"
+              (click)="searchNom()"
+            >
+              Recherche
+            </button>
+          </div>
+        </div>
+      </div>
+      <div class="col-md-12">
+        <pagination-controls class="my-pagination"
+          previousLabel="Prev"
+          nextLabel="Next"
+          [responsive]="true"
+          (pageChange)="handlePageChange($event)"
+        ></pagination-controls>
+      </div>
+      <div class="col-md-6">
+        <h4>Liste des utilisateurs</h4>
+        <ul class="list-group list-group-item-light">
+          <li
+            class="list-group-item"
+            *ngFor="
+            let user of users| paginate : {
+                    itemsPerPage: pageSize,
+                    currentPage: page,
+                    totalItems: count
+                  };
+            let i = index" 
+            [class.active]="i == currentIndex"
+            (click)="setActiveUser(user, i)"
+          >
+          {{ user.nom }}  {{ user.prenom }}
+          </li>
+        </ul>
+    
+        <button class="m-3 btn btn-sm btn-danger" (click)="removeAllUsers()">
+          Tout supprimer
+        </button>
+          Items par Page:
+          <select (change)="handlePageSizeChange($event)">
+            <option *ngFor="let size of pageSizes" [ngValue]="size">
+              {{ size }}
+            </option>
+          </select>
+      </div>
+    
+      <div class="col-md-6">
+        <app-user-details
+          [viewMode]="true"
+          [currentUser]="currentUser"
+          [currentProfil]="currentProfil"
+        ></app-user-details>
+      </div>
+    </div>
+  

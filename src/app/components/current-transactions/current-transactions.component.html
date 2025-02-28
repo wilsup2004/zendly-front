@@ -1,0 +1,20 @@
+<button mat-button color="primary" (click)="goBack()">
+    <mat-icon>arrow_back</mat-icon> {{ 'button.retour' | translate }}
+  </button>
+  
+<div class="button-container">
+  
+    <button mat-raised-button class="custom-button"  style="background-image: url('assets/img/transactionsEnCours.jpeg');" [routerLink]="['/prise-charge-list', this.user?.idUser]">
+        <div class="button-content">
+            <span class="label">{{ 'button.transactions.proposees.encours' | translate }}</span>
+          </div>
+      </button>
+    
+          <button mat-raised-button class="custom-button"  style="background-image: url('assets/img/colisEnCours.jpeg');" [routerLink]="['/colis-list', this.user?.idUser]">
+            <div class="button-content">
+                <span class="label">{{ 'button.propositions.soumises.encours' | translate }}</span>
+              </div>
+          </button>
+        
+      </div>
+    

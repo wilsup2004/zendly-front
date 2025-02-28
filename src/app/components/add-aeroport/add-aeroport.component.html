@@ -1,0 +1,80 @@
+<div>
+    <div class="submit-form">
+      <div *ngIf="!submitted">
+        <div class="form-group">
+          <label for="idAero">Code Aeroport</label>
+          <input
+            type="text"
+            class="form-control"
+            id="idAero"
+            required
+            [(ngModel)]="aeroport.idAero"
+            name="idAero"
+          />
+        </div>
+  
+        <div class="form-group">
+          <label for="aeroNom">Nom Aeroport</label>
+          <input
+            class="form-control"
+            id="aeroNom"
+            required
+            [(ngModel)]="aeroport.aeroNom"
+            name="aeroNom"
+          />
+        </div>
+
+        <div class="form-group">
+            <label for="aeroVille">Ville</label>
+            <input
+              class="form-control"
+              id="aeroVille"
+              required
+              [(ngModel)]="aeroport.aeroVille"
+              name="aeroVille"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="aeroPays">Pays</label>
+            <input
+              class="form-control"
+              id="aeroPays"
+              required
+              [(ngModel)]="aeroport.aeroPays"
+              name="aeroPays"
+            />
+          </div>
+
+
+          <div class="form-group">
+            <label for="aeroLatitude">Latitude</label>
+            <input
+              class="form-control"
+              id="aeroLatitude"
+              required
+              [(ngModel)]="aeroport.aeroLatitude"
+              name="aeroLatitude"
+            />
+          </div>
+  
+          <div class="form-group">
+              <label for="aeroLongitude">Longitude</label>
+              <input
+                class="form-control"
+                id="aeroLongitude"
+                required
+                [(ngModel)]="aeroport.aeroLongitude"
+                name="aeroLongitude"
+              />
+            </div>
+  
+        <button (click)="saveAeroport()" class="btn btn-success">Ajouter</button>
+      </div>
+  
+      <div *ngIf="submitted">
+        <h4>Aeroport ajouté avec succès!</h4>
+        <button class="btn btn-success" (click)="newAeroport()">Nouveau</button>
+      </div>
+    </div>
+  </div>

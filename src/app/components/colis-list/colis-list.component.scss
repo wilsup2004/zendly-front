@@ -1,0 +1,96 @@
+.custom-colis-list {
+  display: grid;
+  grid-template-columns: 600px 600px 600px; // 3 colonnes
+  gap: 2px;
+  width: 98%;
+  margin: auto;
+  margin-left: 5px;
+}
+
+
+.example-card {
+  width: 400px;
+  margin-bottom: 8px;
+  border: 3px solid #5a015e; // Change la couleur et l'épaisseur
+  border-radius: 8px; // Optionnel : arrondir les bords
+}
+
+.custom-title {
+  font-weight: bold;
+  text-align: center;
+  width: 100%;
+}
+
+mat-card-content {
+  max-width: 100%; // Pour éviter le dépassement
+  word-wrap: break-word;
+  overflow-wrap: break-word;
+}
+
+.custom-statut {
+  width: 260px;
+  font-size: 12px;
+}
+
+.custom-button {
+  font-size: 12px;
+  padding: 4px 8px;
+  min-width: 50px; /* Ajuste la largeur minimale */
+  height: 10px;
+  text-align: right;
+  
+}
+
+.filler {
+  display: flex; /* Active Flexbox */
+   flex: 1 1 auto;
+   flex-wrap: wrap; /* Retour à la ligne */
+ }
+
+/************************************  Styles pour les écrans moyens *************************/
+@media (max-width: 1400px) {
+
+  .custom-colis-list {
+    display: grid;
+    grid-template-columns:  repeat(3, 440px); ; // 3 colonnes
+    gap: 2px;
+  
+    width: 100%;
+    margin: auto;
+    margin-left: 5px;
+  }
+  
+  
+  .example-card {
+    width: 400px;
+    margin-bottom: 8px;
+    border: 3px solid #5a015e; // Change la couleur et l'épaisseur
+    border-radius: 8px; // Optionnel : arrondir les bords
+  }
+  
+
+}
+/************************************  Styles pour les petits écrans *************************/
+@media (max-width: 600px) {
+  .example-card {
+    max-width: 100%;
+    margin-bottom: 8px;
+  }
+
+  .custom-colis-list {
+    display: grid;
+    grid-template-columns: repeat(1, 350px); // 2 colonnes
+    gap: 2px;
+    margin: auto;
+    margin-left: 5px;
+    margin-right: 5px;
+
+  }
+
+  .custom-statut {
+    width: 230px;
+    font-size: 10px;
+    margin-right: 2px;
+  }
+
+}

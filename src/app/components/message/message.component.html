@@ -1,0 +1,41 @@
+<button mat-button color="primary" (click)="goBack()">
+  <mat-icon>arrow_back</mat-icon> {{ 'button.retour' | translate }}
+</button>
+
+<div class="custom-chat">
+  <div></div>
+  <div>
+    <mat-card>
+      <mat-card-content>
+
+        <div *ngFor="let group of groupedMessages">
+          <!-- Affichage de la date -->
+          <div class="date-separator">{{ group.date }}</div>
+
+          <div *ngFor="let message of group.messages">
+             <!-- Horodatage -->
+            <div [ngClass]="{'my-timestamp': message.sender === newMessage.sender, 'other-timestamp': message.sender !== newMessage.sender}">
+              {{ message.horodatage | date:'HH:mm:ss' }}</div>
+            <div [ngClass]="{'my-message': message.sender === newMessage.sender, 'other-message': message.sender !== newMessage.sender}">
+              <div class="message-content">
+                <strong>{{ message.sender }}:</strong>
+                <br>{{message.message }}
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+      </mat-card-content>
+      <mat-card-actions class="custom-send">
+        <mat-form-field appearance="fill">
+          <mat-label>{{'libelle.message' | translate }}</mat-label>
+          <input matInput [(ngModel)]="newMessage.message" placeholder="Type a message">
+        </mat-form-field>
+        <button mat-raised-button type="submit" color="primary" (click)="sendMessage()">{{'button.envoyer' | translate
+          }}</button>
+      </mat-card-actions>
+    </mat-card>
+  </div>
+  <div></div>
+</div>

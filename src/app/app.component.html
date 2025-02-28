@@ -1,0 +1,132 @@
+<div [class]="selectedTheme" class="app-container">
+
+  <mat-toolbar color="primary" class="mat-toolbar.mat-primary">
+
+    <button mat-icon-button (click)="toggleSidenav()">
+      <mat-icon>menu</mat-icon>
+    </button>
+    <span class="app-name">ZENDLY</span>
+
+   
+    <span class="filler"></span>
+
+    <button mat-button *ngIf="user" [routerLink]="['/dashboard']">
+      <mat-icon>home</mat-icon>
+    </button>
+
+    <button mat-button *ngIf="user" (click)="goToProfile()">
+      <mat-icon>person</mat-icon>
+    </button>
+
+    <span class="spacer"></span>
+
+    <button mat-button *ngIf="user" (click)="logout()">
+      <mat-icon>logout</mat-icon>
+    </button>
+
+
+  </mat-toolbar>
+
+  <mat-sidenav-container>
+    <mat-sidenav #sidenav mode="over" opened="false" *ngIf="user">
+      <mat-nav-list>
+
+        <div class="profile-card">
+          <div class="header"></div>
+          <h2>{{this.nom}} {{this.prenom}}</h2>
+          <h4>{{this.idUser}}</h4>
+
+        </div>
+       
+        <mat-divider *ngIf="isAdminOrSuperuser()"></mat-divider>
+
+        <h3 matSubheader *ngIf="isAdminOrSuperuser()">{{ 'ADMINISTRATION' | translate }}</h3>
+
+        <a mat-list-item *ngIf="isAdminOrSuperuser()" [routerLink]="['/statistics']">
+          <span matLine>{{ 'STATISTICS' | translate }}</span>
+        </a>
+        <a mat-list-item *ngIf="isAdminOrSuperuser()" [routerLink]="['/finances']">
+          <span matLine>{{ 'FINANCES' | translate }}</span>
+        </a>
+        <a mat-list-item *ngIf="isAdminOrSuperuser()" [routerLink]="['/users']">
+          <span matLine>{{ 'USER_LIST' | translate }}</span>
+        </a>
+        <a mat-list-item *ngIf="isAdminOrSuperuser()" [routerLink]="['/addUser']">
+          <span matLine>{{ 'ADD_USER' | translate }}</span>
+        </a>
+        <a mat-list-item *ngIf="isAdminOrSuperuser()" [routerLink]="['/aeroports']">
+          <span matLine>{{ 'AIRPORT_LIST' | translate }}</span>
+        </a>
+        <a mat-list-item *ngIf="isAdminOrSuperuser()" [routerLink]="['/addAeroport']">
+          <span matLine>{{ 'ADD_AIRPORT' | translate }}</span>
+        </a>
+
+        <mat-divider></mat-divider>
+        <!--
+      <mat-list-item [routerLink]="['/flight-search']">
+        <span matLine>{{ 'SEARCH_FLIGHT' | translate }}</span>
+      </mat-list-item>
+       <mat-list-item [routerLink]="['/transactions-list']">
+        <span matLine>{{ 'PROPOSED_TRANSACTIONS' | translate }}</span>
+      </mat-list-item>
+      -->
+
+        <a mat-list-item [routerLink]="['/transaction-search']">
+          <span matLine>{{ 'SEARCH_TRANSACTIONS' | translate }}</span>
+        </a>
+
+        <a mat-list-item [routerLink]="['/colis-list']">
+          <span matLine>Liste des colis en cours</span>
+        </a>
+        <!--
+      <mat-list-item [routerLink]="['/propositions-list']">
+        <span matLine>{{ 'PROPOSITION_LIST' | translate }}</span>
+      </mat-list-item>
+      -->
+
+        <mat-divider></mat-divider>
+
+        <h3 matSubheader>{{ 'PARAMETRAGES' | translate }}</h3>
+        <!--
+      <mat-list-item>
+           <mat-select class="custom-select" [(value)]="selectedLanguage" (selectionChange)="changeLanguage($event.value)">
+            <mat-option value="en">English</mat-option>
+            <mat-option value="fr">Français</mat-option>
+          </mat-select>
+       </mat-list-item>
+     -->
+
+     <mat-expansion-panel>
+      <mat-expansion-panel-header>
+        <mat-panel-title> Language</mat-panel-title>
+      </mat-expansion-panel-header>
+      <a mat-list-item (click)="changeLanguage('en')">
+        English
+      </a>
+      <a mat-list-item (click)="changeLanguage('fr')">
+        Français
+      </a>
+     </mat-expansion-panel>
+
+       <mat-expansion-panel>
+            <mat-expansion-panel-header>
+              <mat-panel-title> Themes</mat-panel-title>
+            </mat-expansion-panel-header>
+            <a mat-list-item (click)="changeTheme('light-theme')">
+              Light
+            </a>
+            <a mat-list-item (click)="changeTheme('dark-theme')">Dark</a>
+            <a mat-list-item (click)="changeTheme('indigo-theme')">Indigo</a>
+            <a mat-list-item (click)="changeTheme('green-theme')">Green</a>
+        </mat-expansion-panel>
+
+
+      </mat-nav-list>
+    </mat-sidenav>
+
+    <mat-sidenav-content>
+      <router-outlet></router-outlet>
+    </mat-sidenav-content>
+  </mat-sidenav-container>
+</div>
+<footer class="app-footer">{{ 'FOOTER' | translate }}</footer>

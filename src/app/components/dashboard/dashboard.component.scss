@@ -1,0 +1,94 @@
+/* Conteneur pour les boutons */
+.button-container {
+  display: flex;
+  flex-direction: column; /* Aligne les boutons verticalement */
+  gap: 16px; /* Espace entre les boutons */
+  padding: 10px;
+  text-align: center;
+}
+
+.custom-button {
+    width: 1200px;
+    height: 175px !important;
+    min-height: 100px !important;
+    max-height: 300px !important;
+    line-height: 300px !important; /* Assurer l'alignement du texte */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 24px !important;
+    background-size: cover; /* Ajuste l'image à la taille du bouton */
+    background-position: center; /* Centre l'image */
+   // color: white; /* Couleur du texte */
+   // font-size: 18px; /* Taille du texte */
+   // font-weight: bold; /* Gras */
+    border: none; /* Supprime la bordure */
+    border-radius: 8px; /* Coins arrondis */
+  }
+
+  .custom-button:hover {
+    background-color: #0056b3; /* Couleur de fond au survol */
+  }
+ 
+  
+  /* Style du texte */
+  /*
+.label {
+   background-color: #081829;
+   
+    color: white;
+    font-size: 24px;
+    font-weight: bold;
+    text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); 
+    border-radius: 5px; 
+  }
+*/
+
+.label {
+  position: relative;
+  padding: 5px 10px;
+  color: white;
+  z-index: 1;
+}
+
+  .label::before {
+    content: "";
+    position: absolute;
+    left: -5px;
+    right: -5px;
+    top: 0;
+    bottom: 0;
+   // background: black;
+   //background-color: hsla(220, 100%, 50%, 0.5); /* Bleu translucide */
+   background-color: rgba(0, 0, 0, 0.3); /* Noir avec 50% de transparence */ 
+   z-index: -1;
+    border-radius: 5px;
+  }
+
+/************************************  Styles pour les petits écrans *************************/
+@media (max-width: 600px) {
+  .custom-button {
+    width: 350px;
+    height: 100px !important;
+    min-height: 100px !important;
+    max-height: 100px !important;
+    line-height: 100px !important; /* Assurer l'alignement du texte */
+    display: flex !important;
+    align-items: center !important;
+    justify-content: center !important;
+    font-size: 24px !important;
+    background-size: cover; /* Ajuste l'image à la taille du bouton */
+    background-position: center; /* Centre l'image */
+    border: none; /* Supprime la bordure */
+    border-radius: 2px; /* Coins arrondis */
+  }
+
+  .label {
+      color: white;
+      font-size: 15px;
+      font-weight: bold;
+      text-shadow: 2px 2px 5px rgba(0, 0, 0, 0.5); /* Ombre du texte */
+    }
+
+  
+  }

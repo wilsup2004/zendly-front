@@ -1,0 +1,291 @@
+<div *ngIf="viewMode; else editable">
+    <div *ngIf="currentTransaction.idDispo">
+      <h4>Transaction</h4>
+      <div>
+        <label><strong>Utilisateur:</strong></label> {{ currentTransaction.users.idUser }}
+      </div>
+      <div>
+        <label><strong>N° VOL:</strong></label> {{ currentTransaction.idVol }}
+      </div>
+      <div>
+        <label><strong>Ville de départ:</strong></label> {{ currentTransaction.villeDepart }}
+      </div>
+      <div>
+        <label><strong>Aeroport de départ:</strong></label> {{ currentTransaction.aeronomDepart }}
+      </div>
+      <div>
+        <label><strong>Date de départ:</strong></label> {{ currentTransaction.dateDepart }}
+      </div>
+      <div>
+        <label><strong>Ville d'arrivée:</strong></label> {{ currentTransaction.villeArrivee }}
+      </div>
+      <div>
+        <label><strong>Aeroport d'arrivée:</strong></label> {{ currentTransaction.aeronomArrivee }}
+      </div>
+      <div>
+        <label><strong>Date d'arrivée':</strong></label> {{ currentTransaction.dateArrivee }}
+      </div>
+      <div>
+        <label><strong>Nb kilos disponibles:</strong></label> {{ currentTransaction.nbKiloDispo }}
+      </div>
+      <div>
+        <label><strong>Statut:</strong></label> {{ currentTransaction.statuts.libelStatut }}
+      </div>
+
+      <a
+        class="badge badge-warning"
+        routerLink="/transactions/{{ currentTransaction.idDispo }}"
+      >
+        Selectionner
+      </a>
+    </div>
+  
+    <div *ngIf="!currentTransaction">
+      <br />
+      <p>S'il vous plait, veuillez selectionner une transaction...</p>
+    </div>
+  </div>
+  
+  <ng-template #editable>
+    <button mat-button color="primary" (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon> {{ 'button.retour' | translate }}
+    </button>
+    <div *ngIf="currentTransaction.idDispo" class="edit-form">
+      <h4>Transaction</h4>
+      <form>   
+
+        <div class="form-group">
+          <label for="users">Utilisateur</label>
+          <input
+            type="text"
+            class="form-control"
+            id="users"
+            [(ngModel)]="currentTransaction.users.idUser"
+            name="users"
+            disabled
+          />
+        </div>
+
+        <div class="form-group">
+            <label for="idVol">N° VOL</label>
+            <input
+              type="text"
+              class="form-control"
+              id="idVol"
+              [(ngModel)]="currentTransaction.idVol"
+              name="idVol"
+              disabled
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="villeDepart">Ville de départ</label>
+            <input
+              type="text"
+              class="form-control"
+              id="villeDepart"
+              [(ngModel)]="currentTransaction.villeDepart"
+              name="villeDepart"
+              disabled
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="aeronomDepart">Aeroport de départ</label>
+            <input
+              type="text"
+              class="form-control"
+              id="aeronomDepart"
+              [(ngModel)]="currentTransaction.aeronomDepart"
+              name="aeronomDepart"
+              disabled
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="dateDepart">Date de départ</label>
+            <input
+              type="text"
+              class="form-control"
+              id="dateDepart"
+              [(ngModel)]="currentTransaction.dateDepart"
+              name="dateDepart"
+              disabled
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="villeArrivee">Ville d'arrivée</label>
+            <input
+              type="text"
+              class="form-control"
+              id="villeArrivee"
+              [(ngModel)]="currentTransaction.villeArrivee"
+              name="villeArrivee"
+              disabled
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="aeronomArrivee">Aeroport d'arrivée</label>
+            <input
+              type="text"
+              class="form-control"
+              id="aeronomArrivee"
+              [(ngModel)]="currentTransaction.aeronomArrivee"
+              name="aeronomArrivee"
+              disabled
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="dateArrivee">Date d'arrivée</label>
+            <input
+              type="text"
+              class="form-control"
+              id="dateArrivee"
+              [(ngModel)]="currentTransaction.dateArrivee"
+              name="dateArrivee"
+              disabled
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="nbKiloDispo">Nb kilos Proposés</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nbKiloDispo"
+              [(ngModel)]="currentTransaction.nbKiloDispo"
+              name="nbKiloDispo"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="nbKiloRestant">Nb kilos disponibles</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nbKiloRestant"
+              [(ngModel)]="nbKiloRestant"
+              name="nbKiloRestant"
+              disabled
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="statuts">Statut</label>
+            <input
+              type="text"
+              class="form-control"
+              id="statuts"
+              [(ngModel)]="currentTransaction.statuts.libelStatut"
+              name="statuts"
+              disabled
+            />
+          </div>
+  
+      </form>
+  
+     
+  <!--
+      <button class="badge badge-danger mr-2" (click)="deleteTransaction()">
+        Delete
+      </button>
+  -->
+   <!--
+      <button
+        type="submit"
+        class="badge badge-success mb-2"
+        (click)="updateTransaction()"
+      >
+        Update
+      </button>
+    -->
+
+      <button mat-raised-button 
+      color="primary"  
+      type="submit" 
+      (click)="updateTransaction()">
+        Update
+      </button>
+
+      <p>{{ message }}</p>
+    </div>
+  
+    <div *ngIf="!currentTransaction.idDispo">
+      <br />
+      <p>Impossible d'accèder à cet aéroport...</p>
+    </div>
+
+   <div class="mat-elevation-z8">
+      <table mat-table [dataSource]="dataSource">
+    
+        <!-- idDispo-->
+        <ng-container matColumnDef="idDispo">
+          <th mat-header-cell *matHeaderCellDef> N° Transac </th>
+          <td mat-cell *matCellDef="let element"> {{element.idDispo}} </td>
+        </ng-container>
+    
+        <!-- idUserInitiateur -->
+        <ng-container matColumnDef="idUserInitiateur">
+          <th mat-header-cell *matHeaderCellDef> Initiateur </th>
+          <td mat-cell *matCellDef="let element"> {{element.idUserInitiateur}} </td>
+        </ng-container>
+    
+        <!-- idVol -->
+        <ng-container matColumnDef="idVol">
+          <th mat-header-cell *matHeaderCellDef> N° Vol </th>
+          <td mat-cell *matCellDef="let element"> {{element.idVol}} </td>
+        </ng-container>
+    
+        <!-- idUserCandidat -->
+        <ng-container matColumnDef="idUserCandidat">
+          <th mat-header-cell *matHeaderCellDef> Candidat </th>
+          <td mat-cell *matCellDef="let element"> {{element.idUserCandidat}} </td>
+        </ng-container>
+
+          <!-- nbKiloAchete -->
+          <ng-container matColumnDef="nbKiloAchete">
+            <th mat-header-cell *matHeaderCellDef> NB Kilos Achetés </th>
+            <td mat-cell *matCellDef="let element"> {{element.nbKiloAchete}} </td>
+          </ng-container>
+
+            <!-- libelStatut -->
+        <ng-container matColumnDef="libelStatut">
+            <th mat-header-cell *matHeaderCellDef> Statut </th>
+           <td mat-cell *matCellDef="let element">
+                <mat-form-field>
+                  <mat-select [(value)]="element.idStatut" (selectionChange)="setCurrentStatuts(element.idStatut);onStatutChange(element);">
+                     <mat-option *ngFor="let stat of optionStatuts" [value]="stat.idStatut">
+                      {{ stat.libelStatut }}
+                    </mat-option>
+                  </mat-select>
+                </mat-form-field>
+              </td>
+          </ng-container>
+
+     <!-- message -->
+     <ng-container matColumnDef="message">
+      <th mat-header-cell *matHeaderCellDef> Echanges </th>
+      <td mat-cell *matCellDef="let element"><a
+        class="badge badge-warning"
+        routerLink="/messages/{{ element.idDispo }}/{{ element.idUserCandidat }}"
+     >
+         Message
+    </a></td>
+    </ng-container>
+
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+      </table>
+      <mat-paginator #paginator [pageSizeOptions]="[5, 10, 20]"
+                     showFirstLastButtons>
+      </mat-paginator>
+    </div>
+    <button mat-raised-button 
+    color="primary"  (click)="saveLstPropositions()" >Enregistrer</button>
+
+</ng-template>
+   
+    

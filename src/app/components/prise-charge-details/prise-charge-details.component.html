@@ -1,0 +1,165 @@
+<button mat-button color="primary" (click)="goBack()">
+    <mat-icon>arrow_back</mat-icon> {{ 'button.retour' | translate }}
+</button>
+
+<div class="prise-charge-detail">
+
+    <mat-card class="prise-card">
+        <form [formGroup]="form">
+            <mat-card-header>
+                <div>
+
+                    <mat-card-title>{{ 'titre.prise.en.charge' | translate }}<br>
+
+                        <mat-form-field appearance="outline" class="custom-statut" style="text-align: right;">
+                            <mat-label>{{ 'libelle.libelStatut' | translate }}</mat-label>
+                            <input matInput [value]="translatedStatutPrise"
+                                [ngStyle]="{'text-align': 'center','font-weight': 'bold', 'background-color': getBackgroundColor(priseStatut), 'color': getTextColor(priseStatut)}"
+                                readonly>
+                        </mat-form-field>
+                    </mat-card-title>
+
+                </div>
+            </mat-card-header>
+            <mat-card-content>
+                <mat-form-field appearance="outline" class="full-width" style="text-align: right;">
+                    <mat-label>{{ 'libelle.id.user.preneur' | translate }}</mat-label>
+                    <input matInput formControlName="userPrise" readonly>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="full-width" style="text-align: right;">
+                    <mat-label>{{ 'libelle.id.vol' | translate }}</mat-label>
+                    <input matInput formControlName="idVol" readonly>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="full-width" style="text-align: right;">
+                    <mat-label>{{ 'libelle.villeDepart' | translate }}</mat-label>
+                    <input matInput formControlName="villeDepart" readonly>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="full-width" style="text-align: right;">
+                    <mat-label>{{ 'libelle.dateDepart' | translate }}</mat-label>
+                    <input matInput  [value]="formatDate(form.get('dateDepart')?.value)"  formControlName="dateDepart" readonly>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="full-width" style="text-align: right;">
+                    <mat-label>{{ 'libelle.villeArrivee' | translate }}</mat-label>
+                    <input matInput formControlName="villeArrivee" readonly>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="full-width" style="text-align: right;">
+                    <mat-label>{{ 'libelle.dateArrivee' | translate }}</mat-label>
+                    <input matInput  [value]="formatDate(form.get('dateArrivee')?.value)"  formControlName="dateArrivee" readonly>
+                </mat-form-field>
+            </mat-card-content>
+        </form>
+
+        <mat-card-actions>
+            <div style="text-align: left;">
+                <button mat-raised-button *ngIf="isPrendCharge" color="primary" (click)="prendreEnCharge()">{{
+                    'button.prendre.charge' | translate }}
+                </button>
+                <button mat-raised-button *ngIf="isDelivre" color="primary" (click)="delivrer()">{{'button.delivrer' |
+                    translate }}
+                </button>
+            </div>
+        </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="colis-card">
+        <form [formGroup]="form">
+            <mat-card-header>
+                <div>
+
+                    <mat-card-title>{{ 'titre.colis' | translate }}<br>
+                        <mat-form-field appearance="outline" class="custom-statut" style="text-align: right;">
+                            <mat-label>{{ 'libelle.libelStatut' | translate }}</mat-label>
+                            <input matInput [value]="translatedStatutColis"
+                                [ngStyle]="{'text-align': 'center','font-weight': 'bold', 'background-color': getBackgroundColor(colisStatut), 'color': getTextColor(colisStatut)}"
+                                readonly>
+                        </mat-form-field>
+                    </mat-card-title>
+
+                </div>
+            </mat-card-header>
+            <mat-card-content>
+
+                <mat-form-field appearance="outline" class="full-width" style="text-align: right;">
+                    <mat-label>{{ 'libelle.id.user.colis' | translate }}</mat-label>
+                    <input matInput formControlName="userColis" readonly>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="full-width" style="text-align: right;">
+                    <mat-label>{{ 'libelle.longueur' | translate }}</mat-label>
+                    <input matInput formControlName="longueur" readonly>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="full-width" style="text-align: right;">
+                    <mat-label>{{ 'libelle.largeur' | translate }}</mat-label>
+                    <input matInput formControlName="largeur" readonly>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="full-width" style="text-align: right;">
+                    <mat-label>{{ 'libelle.hauteur' | translate }}</mat-label>
+                    <input matInput formControlName="hauteur" readonly>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="full-width" style="text-align: right;">
+                    <mat-label>{{ 'libelle.poids' | translate }}</mat-label>
+                    <input matInput formControlName="nbKilo" readonly>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="full-width" style="text-align: right;">
+                    <mat-label>{{ 'libelle.tarif' | translate }}</mat-label>
+                    <input matInput formControlName="tarif" readonly>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="full-width" style="text-align: right;">
+                    <mat-label>{{ 'libelle.date.creation.annonce' | translate }}</mat-label>
+                    <input matInput  [value]="formatDate(form.get('horodatage')?.value)" formControlName="horodatage" readonly>
+                </mat-form-field>
+                <mat-form-field appearance="outline" class="full-width" style="text-align: right;">
+                    <mat-label>{{ 'libelle.description.contenu' | translate }}</mat-label>
+                    <input matInput formControlName="description" readonly>
+                </mat-form-field>
+            </mat-card-content>
+        </form>
+        <mat-card-actions>
+            <div style="text-align: left;">
+                <button mat-raised-button *ngIf="isConfPrendCharge" color="primary" (click)="confirmPriseEnCharge()">
+                    {{ 'button.conf.prise.charge' | translate }}
+                </button>
+                <button mat-raised-button *ngIf="isConfRecept" color="primary" (click)="confirmReception()">
+                    {{ 'button.conf.reception' | translate }}
+                </button>
+
+                <button mat-raised-button *ngIf="isRepublie" color="primary" (click)="getAlert('Republier')">
+                    {{'button.republier.colis' | translate }}
+                </button>
+                <button mat-raised-button class="warn" *ngIf="isSupprime" color="warn"
+                    (click)="supprimer()">{{'button.supprime' | translate }}
+                </button>
+            </div>
+        </mat-card-actions>
+    </mat-card>
+
+    <mat-card class="no-border">
+        <div>
+            <button mat-icon-button color="primary" routerLink="/messages/{{ idPrise }}/{{ priseCharge.colis?.users?.idUser }}">
+                <mat-icon class="custom-icon">chat</mat-icon>
+            </button>
+           Messages
+        </div>
+        <div>
+            <button mat-raised-button *ngIf="isCloture" color="primary" (click)="cloturer()">{{'button.cloture' |
+                translate }}
+            </button>
+        </div>
+        <div>
+            <button mat-raised-button class="warn" *ngIf="isProbleme" color="warn"
+                (click)="signaler()">{{'button.probleme' | translate }}
+            </button>
+        </div>
+        <div>
+            <button mat-raised-button class="warn" *ngIf="isAnnule" color="accent" (click)="annule()">{{'button.annuler'
+                | translate }}
+            </button>
+        </div>
+        <div>
+            <button mat-raised-button class="warn" *ngIf="isAnnulePrise" color="accent"
+                (click)=" annulePrise()">{{'button.annuler.prise.charge' | translate }}
+            </button>
+        </div>
+
+    </mat-card>
+
+</div>

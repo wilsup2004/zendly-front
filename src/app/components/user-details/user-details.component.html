@@ -1,0 +1,145 @@
+<div *ngIf="viewMode; else editable">
+    <div *ngIf="currentUser.idUser">
+      <h4>Utilisateur</h4>
+      <div>
+        <label><strong>pseudo:</strong></label> {{ currentUser.idUser }}
+      </div>
+      <div>
+        <label><strong>Nom:</strong></label> {{ currentUser.nom }}
+      </div>
+      <div>
+        <label><strong>Prenom:</strong></label> {{ currentUser.prenom }}
+      </div>
+      <div>
+        <label><strong>Email:</strong></label> {{ currentUser.mail }}
+      </div>
+      <div>
+        <label><strong>Password:</strong></label> {{ currentUser.password }}
+      </div>
+      <div>
+        <label><strong>ID Profil:</strong></label> {{ currentProfil.idProfil }}
+      </div>
+      <div>
+        <label><strong>Profil:</strong></label> {{ currentProfil.libelProfil }}
+      </div>
+
+      <a
+        class="badge badge-warning"
+        routerLink="/users/{{ currentUser.idUser }}"
+      >
+        Selectionner
+      </a>
+    </div>
+  
+    <div *ngIf="!currentUser">
+      <br />
+      <p>S'il vous plait, veuillez selectionner un utilisateur...</p>
+    </div>
+  </div>
+  
+  <ng-template #editable>
+    <div *ngIf="currentUser.idUser" class="edit-form">
+      <h4>Utilisateur</h4>
+      <form>
+
+        <div class="form-group">
+            <label for="idUser">pseudo </label>
+            <input
+              type="text"
+              class="form-control"
+              id="idUser"
+              required
+              [(ngModel)]="currentUser.idUser"
+              name="idUser"
+            />
+          </div>
+
+        <div class="form-group">
+          <label for="nom">Nom </label>
+          <input
+            type="text"
+            class="form-control"
+            id="nom"
+            [(ngModel)]="currentUser.nom"
+            name="nom"
+          />
+        </div>
+
+        <div class="form-group">
+            <label for="prenom">Prenom</label>
+            <input
+            type="text"
+              class="form-control"
+              id="prenom"
+              [(ngModel)]="currentUser.prenom"
+              name="prenom"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="mail">Email</label>
+            <input
+            type="text"
+              class="form-control"
+              id="mail"
+              [(ngModel)]="currentUser.mail"
+              name="mail"
+            />
+          </div>
+
+
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input
+            type="text"
+              class="form-control"
+              id="password"
+              [(ngModel)]="currentUser.password"
+              name="password"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="idProfil">ID Profil</label>
+            <input
+            type="text"
+              class="form-control"
+              id="idProfil"
+              [(ngModel)]="currentProfil.idProfil"
+              name="idProfil"
+            />
+          </div>
+  
+          <div class="form-group">
+              <label for="libelProfil">Profil</label>
+              <input
+              type="text"
+                class="form-control"
+                id="libelProfil"
+                [(ngModel)]="currentProfil.libelProfil"
+                name="libelProfil"
+              />
+            </div>
+        </form>
+
+    
+
+       <button class="badge badge-danger mr-2" (click)="deleteUser()">
+        Delete
+      </button>
+  
+      <button
+        type="submit"
+        class="badge badge-success mb-2"
+        (click)="updateUser()"
+      >
+        Update
+      </button>
+      <p>{{ message }}</p>
+    </div>
+  
+    <div *ngIf="!currentUser.idUser">
+      <br />
+      <p>Impossible d'accèder à cet utilidateur...</p>
+    </div>
+  </ng-template>

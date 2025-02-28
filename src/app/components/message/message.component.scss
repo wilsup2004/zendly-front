@@ -1,0 +1,111 @@
+/************************************  Styles pour les grands écrans *************************/
+
+
+  .custom-chat {
+    display: grid;
+    grid-template-columns: repeat(3, 600px); // 3 colonnes
+    gap: 2px;
+    
+  width: 98%;
+  margin: auto;
+  margin-left: 5px;
+  }
+
+
+  mat-card {
+    max-width: 500px;
+    margin: auto;
+    padding: 20px;
+  }
+  
+  mat-form-field {
+    width: 100%;
+   // border: 1px solid
+  }
+  
+  button {
+    margin-left: 10px;
+  }
+  
+  .my-message {
+    background-color: #6396ce;
+    color: white;
+    text-align: right;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 60%;
+    margin-left: auto;
+    margin-bottom: 5px;
+  }
+  
+  .other-message {
+    background-color: #c0b9b9;
+    color: black;
+    text-align: left;
+    padding: 10px;
+    border-radius: 10px;
+    max-width: 60%;
+    margin-right: auto;
+    margin-bottom: 5px;
+  }
+  
+  .custom-send {
+    margin-top: 15px;
+    margin: 5px;/* Marge spécifique pour une carte avec la classe custom-card */
+    border: 2px solid #083f3f; // Change la couleur et l'épaisseur
+    border-radius: 8px; // Optionnel : arrondir les bords
+  }
+  
+  .date-separator {
+    text-align: center;
+    font-size: 12px;
+    font-weight: bold;
+    margin: 10px 0;
+    color: #555;
+    background: #ddd;
+    padding: 5px;
+    border-radius: 10px;
+  }
+
+  .my-timestamp {
+    text-align: right;
+    font-size: 10px;
+    color: black;
+    margin-bottom: 2px;
+  }
+
+  .other-timestamp {
+    text-align: left;
+    font-size: 10px;
+    color: black;
+    margin-bottom: 2px;
+  }
+  
+/************************************  Styles Normal************************/
+@media (max-width:1400px) {
+
+.custom-chat {
+  display: grid; 
+ // grid-template-columns: 200px,200px,200px; // 3 colonnes
+  grid-template-columns: repeat(3, 440px); // 3 colonnes
+  gap: 1px;
+}
+
+mat-card {
+  width: 100%;
+  margin: auto;
+  padding: 20px;
+}
+
+}
+/************************************  Styles pour les petits écrans *************************/
+@media (max-width: 600px) {
+
+  .custom-chat {
+    display: grid;
+    grid-template-columns: repeat(1, 1fr); // 2 colonnes
+    gap: 2px;
+  }
+
+
+}

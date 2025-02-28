@@ -1,0 +1,67 @@
+.edit-form {
+
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); // 3 colonnes
+    gap: 2px;
+
+    width: 100%;
+    margin: auto;
+  }
+
+  mat-card {
+    //margin: 16px; /* Marge par défaut */
+    display: flex;
+  
+    &.custom-card {
+      margin: 24px; /* Marge spécifique pour une carte avec la classe custom-card */
+      width: 600px;
+      font-size: 20px;
+    }
+
+    &.form-card {
+      margin: 24px; /* Marge spécifique pour une carte avec la classe custom-card */
+      width: 600px;
+    }
+  }
+
+  mat-card-title {    
+    font-weight: bold; // Met le titre en gras
+  }
+
+  .invisible-card {
+    visibility: hidden;
+  }
+  .btn.btn-success {
+    margin-bottom: 20px;
+  }
+
+   /************************************  Styles pour les petits écrans *************************/
+@media (max-width: 600px) {
+  
+  .edit-form {
+    display: grid; 
+    grid-template-columns: repeat(1, 1fr); // 2 colonnes
+    gap: 2px;
+  }
+
+  mat-card {
+    display: flex;
+
+    &.custom-card {
+      margin: 10px; /* Marge spécifique pour une carte avec la classe custom-card */
+      width: 350px;
+      font-size: 10px;
+    }
+
+    &.form-card {
+      margin: 10px; /* Marge spécifique pour une carte avec la classe custom-card */
+      width: 350px;
+    }
+  }
+
+  mat-card-title {
+    font-size: 15px;
+  }
+
+
+  }

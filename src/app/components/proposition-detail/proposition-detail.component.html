@@ -1,0 +1,187 @@
+<button mat-button color="primary" (click)="goBack()">
+  <mat-icon>arrow_back</mat-icon> {{ 'button.retour' | translate }}
+</button>
+
+<div class="edit-form">
+    <h4>Transaction</h4>
+    <form>   
+
+      <div class="form-group">
+        <label for="users">Utilisateur</label>
+        <input
+          type="text"
+          class="form-control"
+          id="users"
+          [(ngModel)]="currentTransaction.users.idUser"
+          name="users"
+          disabled
+        />
+      </div>
+
+      <div class="form-group">
+          <label for="idVol">N° VOL</label>
+          <input
+            type="text"
+            class="form-control"
+            id="idVol"
+            [(ngModel)]="currentTransaction.idVol"
+            name="idVol"
+            disabled
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="villeDepart">Ville de départ</label>
+          <input
+            type="text"
+            class="form-control"
+            id="villeDepart"
+            [(ngModel)]="currentTransaction.villeDepart"
+            name="villeDepart"
+            disabled
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="aeronomDepart">Aeroport de départ</label>
+          <input
+            type="text"
+            class="form-control"
+            id="aeronomDepart"
+            [(ngModel)]="currentTransaction.aeronomDepart"
+            name="aeronomDepart"
+            disabled
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="dateDepart">Date de départ</label>
+          <input
+            type="text"
+            class="form-control"
+            id="dateDepart"
+            [(ngModel)]="currentTransaction.dateDepart"
+            name="dateDepart"
+            disabled
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="villeArrivee">Ville d'arrivée</label>
+          <input
+            type="text"
+            class="form-control"
+            id="villeArrivee"
+            [(ngModel)]="currentTransaction.villeArrivee"
+            name="villeArrivee"
+            disabled
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="aeronomArrivee">Aeroport d'arrivée</label>
+          <input
+            type="text"
+            class="form-control"
+            id="aeronomArrivee"
+            [(ngModel)]="currentTransaction.aeronomArrivee"
+            name="aeronomArrivee"
+            disabled
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="dateArrivee">Date d'arrivée</label>
+          <input
+            type="text"
+            class="form-control"
+            id="dateArrivee"
+            [(ngModel)]="currentTransaction.dateArrivee"
+            name="dateArrivee"
+            disabled
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="nbKiloDispo">Nb kilos Proposés</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nbKiloDispo"
+            [(ngModel)]="currentTransaction.nbKiloDispo"
+            name="nbKiloDispo"
+            disabled
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="nbKiloRestant">Nb kilos disponibles</label>
+          <input
+            type="text"
+            class="form-control"
+            id="nbKiloRestant"
+            [(ngModel)]="nbKiloRestant"
+            name="nbKiloRestant"
+            disabled
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="statuts">Statut</label>
+          <input
+            type="text"
+            class="form-control"
+            id="statuts"
+            [(ngModel)]="currentTransaction.statuts.libelStatut"
+            name="statuts"
+            disabled
+          />
+        </div>
+
+    </form>
+</div>
+
+<div  class="edit-form">
+    <h4>Proposition</h4>
+    <form>   
+
+        <div class="form-group">
+            <label for="nbKiloDispo">Nb kilos Acheter</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nbKiloDispo"
+              [(ngModel)]="currentProposition.nbKiloAchete"
+              name="nbKiloDispo"
+            />
+          </div>
+
+    </form>
+
+    <div *ngIf="!proposition.idDispo">
+        <button mat-raised-button 
+        color="primary"  
+        type="submit" 
+        (click)="create()">
+          Soumettre
+        </button>
+     </div>
+
+     <div *ngIf="proposition.idDispo">
+        <button mat-raised-button 
+        color="primary"  
+        type="submit" 
+        (click)="updateProposition()">
+          Modifier
+        </button>
+        <span></span>
+        <button mat-raised-button 
+        color="accent"  
+        type="submit" >
+          Annuler
+        </button>
+     </div>
+
+    <p>{{ message }}</p>
+
+</div>

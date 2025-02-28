@@ -1,0 +1,122 @@
+<button mat-button color="primary" (click)="goBack()">
+    <mat-icon>arrow_back</mat-icon> {{ 'button.retour' | translate }}
+</button>
+<div class="colis-detail">
+
+    <mat-card class="custom-card" style="text-align: center;">
+
+        <mat-card-header>
+            <mat-card-title>{{ 'libelle.charger.image' | translate }}</mat-card-title>
+        </mat-card-header>
+        <mat-card-content>
+            <div>
+                <button mat-raised-button color="primary" (click)="fileInput.click()">
+                    {{ 'button.choisir.fichier' | translate }}
+                </button>
+                <input hidden (change)="onFileSelected($event)" #fileInput type="file" id="file" accept="image/*">
+            </div>
+            <div *ngIf="imagePreview">
+                <h3>{{ 'libelle.image.preview' | translate }} :</h3>
+                <img [src]="imagePreview" alt="Aperçu de l'image" style="width: 80%; height: auto;" />
+
+                <div *ngIf="photoinit">
+                    <button mat-raised-button color="accent" class="btn btn-success" (click)="supprimePhoto()">
+                        {{'button.supprime.photo' | translate }}
+                    </button>
+                </div>
+            </div>
+        </mat-card-content>
+    </mat-card>
+
+    <mat-card class="form-card" style="text-align: center;">
+        <form [formGroup]="form" (ngSubmit)="submitForm()">
+            <div *ngIf="!submitted">
+
+                <div>
+                    <mat-form-field appearance="outline" class="full-width" style="margin: 2% auto; margin-left: 2%;">
+                        <mat-label>{{ 'libelle.longueur' | translate }}</mat-label>
+                        <input matInput formControlName="longueur" required>
+                        <mat-error *ngIf="form.get('longueur')?.invalid">{{ 'libelle.longueur.requis' | translate
+                            }}</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>{{ 'libelle.largeur' | translate }}</mat-label>
+                        <input matInput formControlName="largeur" required>
+                        <mat-error *ngIf="form.get('largeur')?.invalid">{{ 'libelle.largeur.requis' | translate
+                            }}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>{{ 'libelle.hauteur' | translate }}</mat-label>
+                        <input matInput formControlName="hauteur" required>
+                        <mat-error *ngIf="form.get('hauteur')?.invalid">{{ 'libelle.hauteur.requis' | translate
+                            }}</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>{{ 'libelle.poids' | translate }}</mat-label>
+                        <input matInput formControlName="nbKilo" required>
+                        <mat-error *ngIf="form.get('nbKilo')?.invalid">{{ 'libelle.poids.requis' | translate
+                            }}</mat-error>
+                    </mat-form-field>
+
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>{{ 'libelle.montant' | translate }}</mat-label>
+                        <input matInput formControlName="tarif" >
+                    </mat-form-field>
+                </div>
+
+                <div>
+                    <mat-form-field>
+                        <mat-label>{{ 'libelle.villeDepart' | translate }}</mat-label>
+                        <mat-select formControlName="villeDepart" name="origin">
+                            <mat-option *ngFor="let origin of origins" [value]="origin.aeroVille">
+                                {{origin.aeroVille}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+
+                    <mat-form-field>
+                        <mat-label>{{ 'libelle.villeArrivee' | translate }}</mat-label>
+                        <mat-select formControlName="villeArrivee" name="destination">
+                            <mat-option *ngFor="let destination of destinations" [value]="destination.aeroVille">
+                                {{destination.aeroVille}}
+                            </mat-option>
+                        </mat-select>
+                    </mat-form-field>
+                </div>
+                <div>
+                    <mat-form-field appearance="outline" class="full-width" style="width: 90%; ">
+                        <mat-label>{{ 'libelle.description.contenu' | translate }}</mat-label>
+                        <textarea matInput formControlName="description" required></textarea>
+                        <mat-error *ngIf="form.get('description')?.invalid">{{ 'libelle.description.requis' |
+                            translate }}</mat-error>
+                    </mat-form-field>
+                </div>
+                <div *ngIf="idColis">
+                    <mat-form-field appearance="outline" class="full-width">
+                        <mat-label>{{ 'libelle.date.creation.annonce' | translate }}</mat-label>
+                        <input matInput  [value]="formatDate(form.get('horodatage')?.value)"  formControlName="horodatage" readonly>
+                    </mat-form-field>
+                </div>
+                <div *ngIf="idColis">
+                    <button mat-raised-button color="primary" (click)="updateColis()" class="btn btn-success">{{
+                        'button.modifier' | translate }}</button>
+                </div>
+                <div *ngIf="!idColis">
+                    <button mat-raised-button color="primary" (click)="saveColis()" class="btn btn-success">{{
+                        'button.enregistrer' | translate }}</button>
+                </div>
+            </div>
+
+            <div *ngIf="submitted">
+                <h4>{{'libelle.succes.enregistre.colis' | translate }}</h4>
+                <button mat-raised-button color="primary" class="btn btn-success" (click)="newColis()">{{
+                    'button.nouveau' | translate }}</button>
+            </div>
+
+        </form>
+    </mat-card>
+</div>

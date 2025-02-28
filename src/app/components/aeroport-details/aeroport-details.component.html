@@ -1,0 +1,129 @@
+<div *ngIf="viewMode; else editable">
+    <div *ngIf="currentAeroport.idAero">
+      <h4>Aeroport</h4>
+      <div>
+        <label><strong>Code:</strong></label> {{ currentAeroport.idAero }}
+      </div>
+      <div>
+        <label><strong>Nom:</strong></label> {{ currentAeroport.aeroNom }}
+      </div>
+      <div>
+        <label><strong>Ville:</strong></label> {{ currentAeroport.aeroVille }}
+      </div>
+      <div>
+        <label><strong>Pays:</strong></label> {{ currentAeroport.aeroPays }}
+      </div>
+      <div>
+        <label><strong>Latitude:</strong></label> {{ currentAeroport.aeroLatitude }}
+      </div>
+      <div>
+        <label><strong>Longitude:</strong></label> {{ currentAeroport.aeroLongitude }}
+      </div>
+
+      <a
+        class="badge badge-warning"
+        routerLink="/aeroports/{{ currentAeroport.idAero }}"
+      >
+        Selectionner
+      </a>
+    </div>
+  
+    <div *ngIf="!currentAeroport">
+      <br />
+      <p>S'il vous plait, veuillez selectionner un aéroport...</p>
+    </div>
+  </div>
+  
+  <ng-template #editable>
+    <div *ngIf="currentAeroport.idAero" class="edit-form">
+      <h4>Aeroport</h4>
+      <form>
+        <div class="form-group">
+          <label for="idAero">Code</label>
+          <input
+            type="text"
+            class="form-control"
+            id="idAero"
+            [(ngModel)]="currentAeroport.idAero"
+            name="idAero"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="aeroNom">Nom</label>
+          <input
+            type="text"
+            class="form-control"
+            id="aeroNom"
+            [(ngModel)]="currentAeroport.aeroNom"
+            name="aeroNom"
+          />
+        </div>
+
+        <div class="form-group">
+            <label for="aeroVille">Ville</label>
+            <input
+              type="text"
+              class="form-control"
+              id="aeroVille"
+              [(ngModel)]="currentAeroport.aeroVille"
+              name="aeroVille"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="aeroPays">Pays</label>
+            <input
+              type="text"
+              class="form-control"
+              id="aeroPays"
+              [(ngModel)]="currentAeroport.aeroPays"
+              name="aeroPays"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="aeroLatitude">Latitude</label>
+            <input
+              type="text"
+              class="form-control"
+              id="aeroLatitude"
+              [(ngModel)]="currentAeroport.aeroLatitude"
+              name="aeroLatitude"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="aeroLongitude">Longitude</label>
+            <input
+              type="text"
+              class="form-control"
+              id="aeroLongitude"
+              [(ngModel)]="currentAeroport.aeroLongitude"
+              name="aeroLongitude"
+            />
+          </div>
+  
+      </form>
+  
+     
+  
+      <button class="badge badge-danger mr-2" (click)="deleteAeroport()">
+        Delete
+      </button>
+  
+      <button
+        type="submit"
+        class="badge badge-success mb-2"
+        (click)="updateAeroport()"
+      >
+        Update
+      </button>
+      <p>{{ message }}</p>
+    </div>
+  
+    <div *ngIf="!currentAeroport.idAero">
+      <br />
+      <p>Impossible d'accèder à cet aéroport...</p>
+    </div>
+  </ng-template>

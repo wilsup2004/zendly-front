@@ -1,0 +1,118 @@
+.custom-prise-charge-list{
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr ); // 3 colonnes
+    gap: 2px;
+  
+    width: 100%;
+    margin: auto;
+  }
+  
+  mat-card {
+    //margin: 16px; /* Marge par défaut */
+    display: flex;
+  
+    &.custom-card {
+      margin: 10px; /* Marge spécifique pour une carte avec la classe custom-card */
+      width: 600px;
+      font-size: 20px;
+    }
+
+    &.form-card {
+      margin: 24px; /* Marge spécifique pour une carte avec la classe custom-card */
+      width: 600px;
+    }
+  }
+
+  mat-card-title {
+    font-weight: bold; // Met le titre en gras
+  }
+  
+    mat-card-content {
+      max-width: 100%; // Pour éviter le dépassement
+      word-wrap: break-word;
+      overflow-wrap: break-word;
+    }
+
+    .invisible-card {
+        visibility: hidden;
+      }
+      
+      .example-card {
+        width: 400px;
+        margin-bottom: 8px;
+        border: 3px solid #009999; // Change la couleur et l'épaisseur
+        border-radius: 8px; // Optionnel : arrondir les bords
+      }
+      
+      .custom-title {
+        font-weight: bold;
+        text-align: center;
+        width: 100%;
+      }
+
+      .custom-statut {
+        width: 260px;
+        font-size: 12px;
+      }
+
+      .custom-button {
+        font-size: 12px;
+        padding: 4px 8px;
+        min-width: 50px; /* Ajuste la largeur minimale */
+        height: 10px;
+        text-align: right;
+        
+      }
+
+      .filler {
+        display: flex; /* Active Flexbox */
+         flex: 1 1 auto;
+         flex-wrap: wrap; /* Retour à la ligne */
+       }
+
+  
+  /************************************  Styles pour les petits écrans *************************/
+  @media (max-width: 600px) {
+   
+  
+    .custom-prise-charge-list{
+      display: grid; 
+      grid-template-columns: repeat(1, 350px); // 2 colonnes
+      gap: 2px;
+     // margin: auto;
+      align-items: center;
+      margin: 15px;
+     }
+
+     mat-card {
+        display: flex;
+    
+        &.custom-card {
+         /* Marge spécifique pour une carte avec la classe custom-card */
+          width: 300px;
+          font-size: 10px;
+        }
+    
+        &.form-card {
+          margin: 10px; /* Marge spécifique pour une carte avec la classe custom-card */
+          width: 300px;
+        }
+      }
+    
+      mat-card-title {
+        font-size: 15px;
+      }
+  
+      .example-card {
+        max-width: 100%;
+        margin-bottom: 8px;
+      }
+
+      .custom-statut {
+        width: 230px;
+        font-size: 10px;
+        margin-right: 2px;
+      }
+  }
+  
+  

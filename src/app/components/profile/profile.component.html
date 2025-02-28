@@ -1,0 +1,72 @@
+<div class="edit-form">
+  <mat-card class="invisible-card"> </mat-card>
+  <mat-card class="form-card" style="text-align: center;">
+    <mat-card-header>
+      <mat-card-title>{{ 'titre.utilisateur' | translate }}</mat-card-title>
+    </mat-card-header>
+    <form [formGroup]="form" >
+
+      <div>
+        <mat-form-field appearance="outline" class="full-width" style="margin: 2% auto; margin-left: 2%;">
+          <mat-label>{{ 'libelle.pseudo' | translate }}</mat-label>
+          <input matInput formControlName="idUser" required [readonly]="visible">
+          <mat-error *ngIf="form.get('idUser')?.invalid">
+            {{ 'libelle.pseudo.requis' | translate}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>{{ 'libelle.nom' | translate }}</mat-label>
+          <input matInput formControlName="nom" required [readonly]="visible">
+          <mat-error *ngIf="form.get('nom')?.invalid">
+            {{ 'libelle.nom.requis' | translate}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>{{ 'libelle.prenom' | translate }}</mat-label>
+          <input matInput formControlName="prenom" required [readonly]="visible">
+          <mat-error *ngIf="form.get('prenom')?.invalid">
+            {{ 'libelle.prenom.requis' | translate}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>{{ 'libelle.mail' | translate }}</mat-label>
+          <input matInput formControlName="mail" required >
+          <mat-error *ngIf="form.get('mail')?.invalid">
+            {{ 'libelle.mail.requis' | translate}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div>
+        <mat-form-field appearance="outline" class="full-width">
+          <mat-label>{{ 'PASSWORD' | translate }}</mat-label>
+          <input matInput formControlName="password" required >
+          <mat-error *ngIf="form.get('password')?.invalid">
+            {{ 'libelle.password.requis' | translate}}
+          </mat-error>
+        </mat-form-field>
+      </div>
+
+      <div *ngIf="!visible">
+        <button mat-raised-button color="primary" (click)="saveUser()" class="btn btn-success">{{
+            'button.valider' | translate }}</button>
+    </div>
+    <div *ngIf="visible">
+        <button mat-raised-button color="primary" (click)="updateUser()" class="btn btn-success">{{
+            'button.modifier' | translate }}</button>
+    </div>
+
+    </form>
+  </mat-card>
+
+  <mat-card class="invisible-card"> </mat-card>
+</div>

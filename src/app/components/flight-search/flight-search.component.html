@@ -1,0 +1,77 @@
+<style>
+    .my-pagination /deep/ .ngx-pagination li {
+      background: white;
+      color: grey;
+    }
+    .my-pagination /deep/ .ngx-pagination .current {
+      background: rgb(97, 97, 143);
+      color: white;
+    }
+  </style>
+  <button mat-button color="primary" (click)="goBack()">
+    <mat-icon>arrow_back</mat-icon> {{ 'button.retour' | translate }}
+  </button>
+  
+<div>
+    <h2>{{'titre.recherche.vol' | translate }}</h2>
+    <mat-form-field>
+        <mat-label>{{'libelle.recherche.vol.origine' | translate }}:</mat-label>
+        <mat-select [(ngModel)]="selectedOriginValue" name="origin">
+          <mat-option *ngFor="let origin of origins" [value]="origin">
+            {{origin.aeroNom}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+     <span>   </span>
+  
+    <mat-form-field>
+        <mat-label>{{'libelle.recherche.vol.destination' | translate }}:  </mat-label>
+        <mat-select [(ngModel)]="selectedDestinationValue" name="destination">
+          <mat-option *ngFor="let destination of destinations" [value]="destination">
+            {{destination.aeroNom}}
+          </mat-option>
+        </mat-select>
+      </mat-form-field>
+    <button (click)="searchFlights(selectedOriginValue,selectedDestinationValue)">{{'button.recherche.vol' | translate }}</button>
+  </div>
+  <div class="col-md-12">
+    <pagination-controls class="my-pagination"
+      previousLabel="Prev"
+      nextLabel="Next"
+      [responsive]="true"
+      (pageChange)="handlePageChange($event)"
+    ></pagination-controls>
+  </div>
+  <div class="col-md-6">
+    <h3>{{'libelle.recherche.vol.result1' | translate }} {{ selectedOriginValue.aeroVille}} {{'libelle.recherche.vol.result2' | translate }}  {{ selectedDestinationValue.aeroVille }}:</h3>
+    <ul class="list-group list-group-item-light">
+        <li class="list-group-item"
+            *ngFor="
+            let flight of flights| paginate : {
+                itemsPerPage: pageSize,
+                currentPage: page,
+                totalItems: count
+              };
+        let i = index" 
+        [class.active]="i == currentIndex"
+        (click)="setActiveVol(flight, i);shareCurrentVol()"
+        >
+            {{ flight.aircompagnieline }} - {{ flight.numVol }} - {{ flight.flight_date}} - {{ flight.flight_status }} 
+        </li>
+    </ul>
+    Items par Page:
+    <select (change)="handlePageSizeChange($event)">
+      <option *ngFor="let size of pageSizes" [ngValue]="size">
+        {{ size }}
+      </option>
+    </select>
+  </div>
+
+  <div class="col-md-6">
+    <app-flight-details
+      [viewMode]="true"
+      [currentVol]="currentVol"
+    ></app-flight-details>
+  </div>
+
+

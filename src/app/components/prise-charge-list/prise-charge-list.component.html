@@ -1,0 +1,77 @@
+<button mat-button color="primary" (click)="goBack()">
+    <mat-icon>arrow_back</mat-icon> {{ 'button.retour' | translate }}
+</button>
+
+<div class="custom-title">
+    <h1>{{ 'titre.listes.prise.en.charge' | translate }}</h1>
+</div>
+<div class="custom-prise-charge-list">
+    <div></div>
+    <div>
+        <div>
+            <h1 *ngIf="errorPrise" class="error-message">{{ errorPrise }}</h1>
+        </div>
+
+        <div class="custom-prise-charge-list" *ngFor="let prise of lstPrise">
+
+            <mat-card class="example-card" appearance="outlined">
+                <mat-card-header>
+                    <mat-card-title-group>
+                        <mat-card-title>
+                            <div *ngIf="prise.colis">
+                            {{ prise.colis.users.idUser }}<br>
+                        </div>
+                            <mat-form-field appearance="outline" class="custom-statut">
+                                <mat-label>{{ 'libelle.libelStatut' | translate }}</mat-label>
+                                <input matInput [value]="updateTranslation(prise.statuts.libelStatut) "
+                                    [ngStyle]="{'text-align': 'center','font-weight': 'bold', 'background-color': getBackgroundColor(prise.statuts.libelStatut), 'color': getTextColor(prise.statuts.libelStatut)}"
+                                    readonly>
+                            </mat-form-field>
+
+                        </mat-card-title>
+
+                        <mat-card-subtitle>{{ 'libelle.villeDepart' | translate }}: {{ prise.villeDepart
+                            }}</mat-card-subtitle>
+                        <mat-card-subtitle>{{ 'libelle.villeArrivee' | translate }}: {{ prise.villeArrivee
+                            }}</mat-card-subtitle>
+                        <mat-card-subtitle *ngIf="prise.colis">{{ 'libelle.montant' | translate }}: {{ prise.colis.tarif
+                            }}</mat-card-subtitle>
+                    </mat-card-title-group>
+                </mat-card-header>
+                <mat-card-content>
+                    <div *ngIf="prise.colis">Description : {{ prise.colis.description }}</div>
+                </mat-card-content>
+
+                <mat-card-actions>
+                    <button mat-button color="primary" (click)="details(prise.idPrise)">{{ 'libelle.details' | translate
+                        }}</button>
+
+                        <button mat-raised-button *ngIf="visibleActions(prise.statuts.libelStatut,'Prendre charge')" class="custom-button"
+                        color="primary" (click)="prendreCharge(prise)">{{'button.prendre.charge' | translate }}
+                      </button>
+            
+                      <button mat-raised-button *ngIf="visibleActions(prise.statuts.libelStatut,'Delivrer')" class="custom-button"
+                        color="primary" (click)="delivrer(prise)">{{'button.delivrer' | translate }}
+                      </button>
+
+                      <button mat-raised-button *ngIf="visibleActions(prise.statuts.libelStatut,'Cloturer')" class="custom-button"
+                      color="primary" (click)="cloturer(prise)">{{'button.cloture' | translate }}
+                    </button>
+            
+                      <div class="filler"></div>
+                     <button mat-raised-button *ngIf="visibleActions(prise.statuts.libelStatut,'Annuler')" class="custom-button"
+                        color="warn" (click)="annule(prise)">{{'button.annuler'| translate }}
+                      </button>
+                      <button mat-raised-button *ngIf="visibleActions(prise.statuts.libelStatut,'Annuler prise')"
+                        class="custom-button" color="warn"
+                        (click)="annulePrise(prise)">{{'button.annuler.prise.charge' | translate }}
+                      </button>
+                      <button mat-raised-button *ngIf="visibleActions(prise.statuts.libelStatut,'Supprimer')" class="custom-button"
+                        color="warn" (click)="supprimer(prise)">{{'button.supprime' | translate }}
+                        </button>
+                </mat-card-actions>
+            </mat-card>
+        </div>
+    </div>
+    <div></div>
+</div>

@@ -1,0 +1,59 @@
+<div class="custom-login">
+
+  <mat-card class="invisible-card"> </mat-card>
+  <mat-card>
+
+    <div class="login">
+      <h2 class="login-header">{{ 'LOGIN' | translate }}</h2>
+
+      <form [formGroup]="loginForm" class="login-container" (ngSubmit)="seConnecter()">
+        <p [ngClass]="{ 'has-error': isSubmitted && formControls['mail'].errors }">
+          <input type="mail" placeholder="Mail" formControlName="mail">
+        </p>
+
+        <div *ngIf="isSubmitted && formControls['mail'].errors" class="help-block">
+          <div *ngIf="formControls['mail'].errors?.['required']">
+            <font color="red">{{'libelle.identification.email.error' | translate }}</font>
+          </div>
+        </div>
+
+
+
+        <p class="password-container" [ngClass]="{ 'has-error': isSubmitted && formControls['password'].errors }">
+          <input [type]="isPasswordVisible ? 'text' : 'password'" 
+          placeholder="Password" 
+          formControlName="password">
+
+          <i class="eye-icon fas" 
+          [ngClass]="isPasswordVisible ? 'fa-eye' : 'fa-eye-slash'"
+          (click)="togglePasswordVisibility()">
+          </i>
+        </p>
+
+        <div *ngIf="isSubmitted && formControls['password'].errors" class="help-block">
+          <div *ngIf="formControls['password'].errors?.['required']">
+            <font color="red">{{'libelle.identification.password.error' | translate }}</font>
+          </div>
+        </div>
+
+        <div *ngIf="isSubmitted && formControls['password'].errors" class="help-block">
+          <div *ngIf="formControls['password'].errors?.['required']">
+            <font color="red">{{'libelle.identification.password.error' | translate }}</font>
+          </div>
+        </div>
+
+        <p>
+          <input type="submit" value="{{'button.identification' | translate }}">
+        </p>
+      </form>
+
+      <div>
+        <button mat-raised-button [routerLink]="['/profile']" color="primary" type="submit">
+          {{ 'CREATE_PROFILE' | translate }}
+        </button>
+      </div>
+
+    </div>
+  </mat-card>
+  <mat-card class="invisible-card"> </mat-card>
+</div>

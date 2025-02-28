@@ -1,0 +1,21 @@
+<div class="button-container">
+
+    <button mat-raised-button class="custom-button" style="background-image: url('assets/img/prise_en_charge.jpeg');" (click)="onButtonClick('/prise-charge-search')">
+        <div class="button-content">
+            <span class="label">{{ 'button.prendre.colis' | translate }}</span>
+          </div>
+      </button>
+    
+    <button mat-raised-button class="custom-button"  style="background-image: url('assets/img/colis.jpeg');" (click)="onButtonClick('/colis-details')">
+        <div class="button-content">
+            <span class="label">{{ 'button.envoyer.colis' | translate }}</span>
+          </div>
+      </button>
+
+      <button mat-raised-button class="custom-button"  style="background-image: url('assets/img/transactions2.jpeg');" (click)="onButtonClick('/current-transactions')">
+        <div class="button-content">
+            <span class="label">{{ 'button.transactions.encours' | translate }}</span>
+          </div>
+      </button>
+    
+  </div>

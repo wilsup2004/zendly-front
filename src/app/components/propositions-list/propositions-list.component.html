@@ -1,0 +1,74 @@
+<button mat-button color="primary" (click)="goBack()">
+  <mat-icon>arrow_back</mat-icon> {{ 'button.retour' | translate }}
+</button>
+
+<div class="table-container">
+    <table mat-table [dataSource]="dataSource" class="mat-elevation-z8">
+  
+
+        <!-- idDispo-->
+        <ng-container matColumnDef="idDispo">
+            <th mat-header-cell *matHeaderCellDef> N° Transac </th>
+            <td mat-cell *matCellDef="let element"> {{element.idDispo}} </td>
+          </ng-container>
+      
+          <!-- idUserInitiateur -->
+          <ng-container matColumnDef="idUserInitiateur">
+            <th mat-header-cell *matHeaderCellDef> Initiateur </th>
+            <td mat-cell *matCellDef="let element"> {{element.idUserInitiateur}} </td>
+          </ng-container>
+      
+          <!-- idVol -->
+          <ng-container matColumnDef="idVol">
+            <th mat-header-cell *matHeaderCellDef> N° Vol </th>
+            <td mat-cell *matCellDef="let element"> {{element.idVol}} </td>
+          </ng-container>
+      
+          <!-- idUserCandidat -->
+          <ng-container matColumnDef="idUserCandidat">
+            <th mat-header-cell *matHeaderCellDef> Candidat </th>
+            <td mat-cell *matCellDef="let element"> {{element.idUserCandidat}} </td>
+          </ng-container>
+  
+            <!-- nbKiloAchete -->
+            <ng-container matColumnDef="nbKiloAchete">
+              <th mat-header-cell *matHeaderCellDef> NB Kilos Achetés </th>
+              <td mat-cell *matCellDef="let element"> {{element.nbKiloAchete}} </td>
+            </ng-container>
+
+          <!-- libelStatut -->
+          <ng-container matColumnDef="libelStatut">
+            <th mat-header-cell *matHeaderCellDef> Statut </th>
+            <td mat-cell *matCellDef="let element"> {{element.libelStatut}} </td>
+          </ng-container>
+
+          <!-- details -->
+          <ng-container matColumnDef="details">
+            <th mat-header-cell *matHeaderCellDef> Details </th>
+            <td mat-cell *matCellDef="let element">
+                <a
+                    class="badge badge-warning"
+                    routerLink="/propositionDetail/{{ element.idDispo }}"
+                 >
+                     Details
+                </a>
+            </td>
+          </ng-container>
+           <!-- message -->
+     <ng-container matColumnDef="message">
+        <th mat-header-cell *matHeaderCellDef> Echanges </th>
+        <td mat-cell *matCellDef="let element"><a
+          class="badge badge-warning"
+          routerLink="/messages/{{ element.idDispo }}/{{ element.idUserCandidat }}"
+       >
+            Message
+      </a></td>
+      </ng-container>
+      <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+      <tr mat-row *matRowDef="let row; columns: displayedColumns;"></tr>
+    </table>
+    <mat-paginator #paginator [pageSizeOptions]="[5, 10, 20]"
+                   showFirstLastButtons>
+    </mat-paginator>
+  </div>
+  

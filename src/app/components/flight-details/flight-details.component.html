@@ -1,0 +1,170 @@
+<div *ngIf="viewMode; else editable">
+    <div *ngIf="currentVol.numVol">
+      <h4>Vol</h4>
+      <div>
+        <label><strong>Compagnie:</strong></label> {{ currentVol!.aircompagnieline }}
+      </div>
+      <div>
+        <label><strong>Numero de vol:</strong></label> {{ currentVol!.numVol }}
+      </div>
+      <div>
+        <label><strong>Ville de depart:</strong></label> {{ currentVol!.villeDepart }}
+      </div>
+      <div>
+        <label><strong>Aeroport de depart:</strong></label> {{ currentVol.departure!.airport }}
+      </div>
+      <div>
+        <label><strong>Date de depart:</strong></label> {{ currentVol.departure!.scheduled | date:'dd/MM/yyyy HH:mm:ss'}}
+      </div>
+      <div>
+        <label><strong>Aeroport d'arrivée:</strong></label> {{ currentVol.arrival!.airport }}
+      </div>
+      <div>
+        <label><strong>Aeroport d'arrivée:</strong></label> {{ currentVol!.villeArrivee }}
+      </div>
+      <div>
+        <label><strong>Date d'arrivée:</strong></label> {{ currentVol.arrival!.scheduled | date:'dd/MM/yyyy HH:mm:ss'}}
+      </div>
+<!--
+      <a
+        class="badge badge-warning"
+        routerLink="/flight-details"
+      >
+        Selectionner
+      </a>
+-->
+    </div>
+  
+    <div *ngIf="!currentVol">
+      <br />
+      <p>S'il vous plait, veuillez selectionner un vol...</p>
+    </div>
+  </div>
+ 
+
+  <ng-template #editable>
+    <button mat-button color="primary" (click)="goBack()">
+      <mat-icon>arrow_back</mat-icon> {{ 'button.retour' | translate }}
+    </button>
+    <div *ngIf="currentVol.numVol" class="edit-form">
+      <h4>VOL</h4>
+      <form>
+        <div class="form-group">
+          <label for="aircompagnieline">Compagnie</label>
+          <input
+            type="text"
+            class="form-control"
+            id="aircompagnieline"
+            [(ngModel)]="currentVol!.aircompagnieline"
+            name="idAero"
+          />
+        </div>
+
+        <div class="form-group">
+          <label for="numVol">Numero de vol</label>
+          <input
+            type="text"
+            class="form-control"
+            id="numVol"
+            [(ngModel)]="currentVol!.numVol"
+            name="numVol"
+          />
+        </div>
+
+        <div class="form-group">
+            <label for="villeDepart">Ville de depart</label>
+            <input
+              type="text"
+              class="form-control"
+              id="villeDepart"
+              [(ngModel)]=" currentVol!.villeDepart"
+              name="villeDepart"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="aeroDepart">Aeroport de depart</label>
+            <input
+              type="text"
+              class="form-control"
+              id="aeroDepart"
+              [(ngModel)]=" currentVol.departure!.airport"
+              name="aeroDepart"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="dateDepart">Date de depart</label>
+            <input
+              type="text"
+              class="form-control"
+              id="dateDepart"
+              [(ngModel)]="currentVol.departure!.scheduled"
+              name="dateDepart"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="villeArrivee">Ville d'arrivée</label>
+            <input
+              type="text"
+              class="form-control"
+              id="villeArrivee"
+              [(ngModel)]=" currentVol!.villeArrivee"
+              name="villeArrivee"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="aeroArrivee">Aeroport d'arrivée</label>
+            <input
+              type="text"
+              class="form-control"
+              id="aeroArrivee"
+              [(ngModel)]="currentVol.arrival!.airport"
+              name="aeroArrivee"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="dateArrivee">Date d'arrivée</label>
+            <input
+              type="text"
+              class="form-control"
+              id="dateArrivee"
+              [(ngModel)]="currentVol.arrival!.scheduled"
+              name="dateArrivee"
+            />
+          </div>
+
+          <div class="form-group">
+            <label for="nbKiloDispo">Nombre kilos initial</label>
+            <input
+              type="text"
+              class="form-control"
+              id="nbKiloDispo"
+              [(ngModel)]="nbKiloDispo"
+              name="nbKiloDispo"
+            />
+          </div>
+  
+      </form>
+  
+  
+      
+    <button mat-raised-button 
+    color="primary"  
+    type="submit" 
+    (click)="creerTradeDispo()">
+      Creer une Disponibilité
+    </button>
+   
+      <p>{{ message }}</p>
+    </div>
+  
+    <div *ngIf="!currentVol.numVol">
+      <br />
+      <p>Impossible d'accèder à ce vol...</p>
+    </div>
+ 
+  </ng-template>

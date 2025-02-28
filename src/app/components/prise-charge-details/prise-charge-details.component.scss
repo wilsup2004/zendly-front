@@ -1,0 +1,120 @@
+.prise-charge-detail {
+    display: grid; 
+    grid-template-columns: repeat(3, 1fr); // 2 colonnes
+    gap: 1px;
+  }
+
+  mat-card {
+    //margin: 16px; /* Marge par défaut */
+    display: flex;
+  
+    &.prise-card {
+      margin: 12px; /* Marge spécifique pour une carte avec la classe custom-card */
+      width: 500px;
+      font-size: 20px;
+      border: 3px solid #009999; // Change la couleur et l'épaisseur
+      border-radius: 8px; // Optionnel : arrondir les bords
+    }
+
+    &.colis-card {
+        margin: 12px; /* Marge spécifique pour une carte avec la classe custom-card */
+        width: 480px;
+        font-size: 20px;
+        border: 3px solid #5a015e; // Change la couleur et l'épaisseur
+        border-radius: 8px; // Optionnel : arrondir les bords
+    }
+
+    &.no-border {
+        margin: 5px;
+        box-shadow: none;  /* Supprime l'ombre */
+        border: none;      /* Supprime toute bordure */
+      }
+  }
+
+  mat-card-title {
+    font-weight: bold; // Met le titre en gras
+  }
+
+  .titre-detail {
+    display: grid; 
+    grid-template-columns: repeat(2, 1fr); // 2 colonnes
+    gap: 2px;
+  }
+
+  .custom-statut {
+    width: 350px;
+  }
+
+  .warn {
+    margin-top: 5px;
+    white-space: normal;  /* Permet le retour à la ligne */
+    text-align: center;   /* Centre le texte */
+    padding: 10px;        /* Ajoute un peu d'espace */
+    word-wrap: break-word; /* Coupe le mot si nécessaire */
+   }
+
+   .custom-icon {
+    font-size: 25px;
+  }
+
+  /************************************  Styles pour les petits écrans *************************/
+@media (max-width: 600px) {
+
+  .prise-charge-detail {
+    display: grid; 
+    grid-template-columns: repeat(1, 1fr); // 2 colonnes
+    gap: 2px;
+  }
+
+  mat-card {
+    display: flex;
+
+    &.prise-card {
+      margin: 10px; /* Marge spécifique pour une carte avec la classe custom-card */
+      width: 350px;
+      font-size: 10px;
+    }
+
+    &.colis-card {
+      margin: 10px; /* Marge spécifique pour une carte avec la classe custom-card */
+      width: 350px;
+    }
+
+    &.no-border {
+        margin: 10px;
+        box-shadow: none;  /* Supprime l'ombre */
+        border: none;      /* Supprime toute bordure */
+      }
+  }
+
+  mat-card-title {
+    font-size: 15px;
+  }
+
+  .form-card {
+    display: flex; /* Active Flexbox */
+     flex: 1 1 auto;
+     flex-wrap: wrap; /* Retour à la ligne */
+   }
+
+   .custom-field {
+    width: 200px;
+    height: 30px;
+    font-size: 10px;
+    margin-top: 5px; 
+    margin-bottom: 5px; 
+
+  }
+
+  .custom-statut {
+    width: 255px;
+    font-size: 12px;
+  }
+  
+  .warn {
+    margin-top: 5px;
+    margin-right: 5px;
+   }
+
+  
+  }
