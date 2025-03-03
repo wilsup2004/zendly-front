@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { UsersDispo } from '../model/users-dispo';
 import { PropositionInitial } from '../model/proposition-initial.model';
 
-const baseUrl = 'http://192.168.1.21:8081/trade/usersDispo'
+const baseUrl = 'http://ec2-35-180-172-219.eu-west-3.compute.amazonaws.com:8081/trade/usersDispo'
 
 @Injectable({
   providedIn: 'root'

@@ -5,7 +5,7 @@ import { BehaviorSubject, Observable } from 'rxjs';
 import { map } from 'rxjs/operators';
 import { User } from '../model/user.model';
 
-const baseUrl = 'http://192.168.1.21:8081/trade/users'
+const baseUrl = 'http://ec2-35-180-172-219.eu-west-3.compute.amazonaws.com:8081/trade/users'
 
 @Injectable({
   providedIn: 'root'

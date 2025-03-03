@@ -4,7 +4,7 @@ import { Observable } from 'rxjs';
 import { UsersDispo } from '../model/users-dispo';
 import { Proposition } from '../model/proposition.model';
 
-const baseUrl = 'http://192.168.1.21:8081/trade/usersProposition'
+const baseUrl = 'http://ec2-35-180-172-219.eu-west-3.compute.amazonaws.com:8081/trade/usersProposition'
 
 @Injectable({
   providedIn: 'root'
@@ -58,33 +58,6 @@ export class PropositionService {
   findByInitiateur(userNom: string,idStatut:any): Observable<Proposition[]> {
     return this.http.get<Proposition[]>(`${baseUrl}/initiateur?userNom=${userNom}&statut=${idStatut}`);
   }
-
-/*
-  calculNbKilorestant(idDispo:any,idCurrentUser: any, nbKiloDispo:any):any{
-    let listPropositionsAccepted: Proposition[] =[];
-    let nbKiloRestant = nbKiloDispo;
-
-    this.getAccept(idDispo)
-    .subscribe({
-      next: (res) => {
-        listPropositionsAccepted = res;
-        console.log(listPropositionsAccepted);
-        for(let propos of listPropositionsAccepted ){
-          // if(propos.idUserCandidat != idCurrentUser)
-          console.log("Nb kilo restant avant calcul ="+ nbKiloRestant);
-          console.log("Nb kilo Acheté avant calcul ="+ propos.nbKiloAchete);
-          nbKiloRestant =  nbKiloRestant - propos.nbKiloAchete;
-           console.log("Nb kilo restant après calcul ="+ nbKiloRestant);
-           
-         }
-      },
-      error: (e) => console.error(e)
-    });
-    console.log(listPropositionsAccepted);
-     console.log("Nb kilo restInit calcule ="+nbKiloRestant);
-     return nbKiloRestant;
-  }
-  */
 
 }
 

@@ -4,9 +4,9 @@ import { Observable, delay, of } from 'rxjs';
 import { Vol } from '../model/rechercheVols/vol';
 import { UsersDispo } from '../model/users-dispo';
 
-const baseUrl = 'http://192.168.1.21:8081/trade/flight'
+const baseUrl = 'http://ec2-35-180-172-219.eu-west-3.compute.amazonaws.com:8081/trade/flight'
 
-const baseUrlDispo = 'http://192.168.1.21:8081/trade/usersDispo'
+const baseUrlDispo = 'http://ec2-35-180-172-219.eu-west-3.compute.amazonaws.com:8081/trade/usersDispo'
 
 @Injectable({
   providedIn: 'root'

@@ -3,7 +3,7 @@ import { HttpClient } from '@angular/common/http';
 import { Observable } from 'rxjs';
 import { Statuts } from '../model/statuts';
 
-const baseUrl = 'http://192.168.1.21:8081/trade/statuts'
+const baseUrl = 'http://ec2-35-180-172-219.eu-west-3.compute.amazonaws.com:8081/trade/statuts'
 
 @Injectable({
   providedIn: 'root'

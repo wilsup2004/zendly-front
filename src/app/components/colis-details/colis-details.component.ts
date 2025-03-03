@@ -148,7 +148,6 @@ export class ColisDetailsComponent {
     this.aeroportService.getAll(params)
     .subscribe(
       response => {
-        //const { aeroports} = response;
         this.origins = response;
         this.destinations = response;
         console.log(this.origins);
@@ -165,7 +164,6 @@ export class ColisDetailsComponent {
 
   previewImage() {
     if (this.selectedFile) {
-      //this.colis.file.append('file', this.selectedFile);
       const reader = new FileReader();
       reader.onload = () => {
         this.imagePreview = reader.result;
@@ -182,8 +180,6 @@ export class ColisDetailsComponent {
 
   saveColis(): void {
     this.submitted = true;
-   // console.log('Formulaire soumis :', this.form.value);
-   // console.log('photo soumise :',this.selectedFile);
     let  colisValid :Colis = this.form.value;
 
     if (this.selectedFile && !(this.selectedFile.name=== 'no_photo.jpeg')) {
