@@ -17,12 +17,19 @@ import { FlightDetailsComponent } from './components/flight-details/flight-detai
 
 
 import { DashboardComponent } from './components//dashboard/dashboard.component';
-//import { DefaultComponent } from './layouts/default/default.component';
-//import { PostsComponent } from './modules/posts/posts.component';
 import { TransactionsListComponent } from './components/transactions-list/transactions-list.component';
 import { TransactionsDetailsComponent } from './components/transactions-details/transactions-details.component';
 import { PropositionsListComponent } from './components/propositions-list/propositions-list.component';
 import { TransactionSearchComponent } from './components/transaction-search/transaction-search.component';
+
+import { MessageComponent } from './components/message/message.component';
+import { CurrentTransactionsComponent } from './components/current-transactions/current-transactions.component';
+import { ColisListComponent } from './components/colis-list/colis-list.component';
+import { ColisDetailsComponent } from './components/colis-details/colis-details.component';
+
+import { PriseChargeListComponent } from './components/prise-charge-list/prise-charge-list.component';
+import { PriseChargeDetailsComponent } from './components/prise-charge-details/prise-charge-details.component';
+import { PriseChargeSearchComponent } from './components/prise-charge-search/prise-charge-search.component';
 
 
 
