@@ -6,6 +6,8 @@ import { MessageService } from 'src/app/services/message.service';
 import { Location } from '@angular/common'; // Importation du service Location pour la navigation
 import { PriseChargeService } from 'src/app/services/prise-charge.service';
 import { PriseCharge } from 'src/app/model/prise-charge.model';
+import { Router, NavigationEnd } from '@angular/router';
+import { Subscription } from 'rxjs';
 
 @Component({
   selector: 'app-message',
@@ -36,10 +38,13 @@ export class MessageComponent implements OnInit {
   //@Input() messages: Message[] = [];
   groupedMessages: { date: string; messages: Message[] }[] = [];
 
+  private routerSubscription!: Subscription;
+
   constructor(public authService: AuthService,
     private priseChargeService: PriseChargeService,
     public messageService: MessageService,
     private route: ActivatedRoute,
+    private router: Router,
     private location: Location) {
 
     this.authService.user.subscribe((user) => {
@@ -70,6 +75,13 @@ export class MessageComponent implements OnInit {
         this.messages = data;
         this.groupMessagesByDate();
       });
+
+         // Détecter le changement de route
+    this.routerSubscription = this.router.events.subscribe(event => {
+      if (event instanceof NavigationEnd) {
+        console.log('🔄 Changement de page détecté !');
+      }
+    });
    
   }
 
@@ -99,6 +111,7 @@ export class MessageComponent implements OnInit {
   ngOnDestroy() {
     console.log('🚪 L’utilisateur quitte le chat...');
     this.messageService.disconnect(); // Appel de la fonction à la sortie du composant
+    this.routerSubscription.unsubscribe(); // Nettoyage de l'abonnement
   }
 
   goBack() {
