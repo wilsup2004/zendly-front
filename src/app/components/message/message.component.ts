@@ -80,6 +80,7 @@ export class MessageComponent implements OnInit {
     this.routerSubscription = this.router.events.subscribe(event => {
       if (event instanceof NavigationEnd) {
         console.log('🔄 Changement de page détecté !');
+        this.messageService.disconnect();
       }
     });
    
