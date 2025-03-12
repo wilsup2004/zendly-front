@@ -73,6 +73,7 @@ export class MessageComponent implements OnInit {
    
   }
 
+
   groupMessagesByDate() {
     const grouped = new Map<string, Message[]>();
     this.messages.forEach((msg) => {
@@ -95,7 +96,13 @@ export class MessageComponent implements OnInit {
    // window.location.reload;
   }
 
+  ngOnDestroy() {
+    console.log('🚪 L’utilisateur quitte le chat...');
+    this.messageService.disconnect(); // Appel de la fonction à la sortie du composant
+  }
+
   goBack() {
+   // this.messageService.disconnect();
     this.location.back();
   }
 

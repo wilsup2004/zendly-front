@@ -51,4 +51,17 @@ export class MessageService {
       console.error("🚨 WebSocket non connecté !");
     }
   }
+
+  disconnect() {
+    if (this.client && this.client.connected) {
+      // Déconnexion WebSocket
+      this.client.deactivate();
+      console.log(`❌ Déconnecté du chat ${this.roomId}`);
+      
+      // Réinitialiser les valeurs
+      this.roomId = null;
+      this.messagesSubject.next([]); // Vide les messages
+    }
+  }
+
 }
