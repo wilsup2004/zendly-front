@@ -27,10 +27,20 @@ jobs:
       - name: Build Angular app
         run: ng build --configuration=production
 
+        
+      - name: Remove all files except "images" directory
+        run: |
+            aws s3 rm s3://zendly-app/ --recursive --exclude "images/*"
+        env:
+          AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
+          AWS_SECRET_ACCESS_KEY: ${{ secrets.AWS_SECRET_ACCESS_KEY }}
+          AWS_REGION: "eu-west-3"
+
+
       - name: Deploy to S3
         uses: jakejarvis/s3-sync-action@master
         with:
-          args: --delete
+          args: --exact-timestamps
         env:
           AWS_S3_BUCKET: ${{ secrets.AWS_S3_BUCKET }}
           AWS_ACCESS_KEY_ID: ${{ secrets.AWS_ACCESS_KEY_ID }}
